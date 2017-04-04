@@ -1,0 +1,65 @@
+/**
+ * Copyright © 2017 Thomas Biesaart (thomas.biesaart@gmail.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+use System, Template, Properties, File, String;
+include io.chapp.testit.report.Report;
+
+var testDirectory = Properties.get("io.chapp.testit.directory");
+var runAllSuitesRobotPath = Properties.get("io.chapp.testit.suiteRobot");
+var cleanUp = Properties.get("io.chapp.testit.cleanup");
+    
+function runAllSuites(suites) {
+    do {
+        generateRobots(suites);
+        runSuites(suites);
+        generateReports(suites);
+    } fail(e) {
+        System.print("Error in '" :: e.robot :: ":" :: e.line :: ":\n" :: e.message, "error");
+    } finally {
+        if(cleanUp) {
+            cleanUp();
+        }
+    }
+}
+
+private function generateRobots(suites) {
+    foreach(suite in suites) {
+        System.print("Generating Test Suite: " :: suite.robot);
+        suite.suiteRobotPath = testDirectory :: "/" :: suite.robotPath;
+        callbot(suite.robotPath, suite);
+        Template.process(
+            "it/test/templates/Suite.ftl", 
+            File.openWrite( suite.suiteRobotPath), 
+            {"suite": suite}
+        );
+    }
+    System.print("Generating Test Suite Index");
+    Template.process(
+        "it/test/templates/RunAllSuites.ftl", 
+        File.openWrite(runAllSuitesRobotPath), 
+        {
+            "suites": suites
+        }
+    );
+}
+
+private function runSuites(suites) {
+    System.print("Executing Tests...");
+    callbot(runAllSuitesRobotPath, suites);
+}
+
+private function cleanUp() {
+    File.delete(testDirectory);
+}

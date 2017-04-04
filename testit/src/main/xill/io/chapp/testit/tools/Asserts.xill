@@ -1,0 +1,68 @@
+/**
+ * Copyright © 2017 Thomas Biesaart (thomas.biesaart@gmail.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+use Assert;
+
+function error(message) {
+    Assert.error(message);
+}
+
+function equal(actual, expected) {
+    equal(actual, expected, null);
+}
+
+function equal(actual, expected, message) {
+    Assert.equal(actual, expected, message);
+}
+
+function notEqual(actual, expected) {
+    notEqual(actual, expected, null);
+}
+
+function notEqual(actual, expected, message) {
+    Assert.notEqual(actual, expected, message);
+}
+
+function isFalse(actual) {
+    isFalse(actual, null);
+}
+
+function isFalse(actual, message) {
+    Assert.isFalse(actual, message);
+}
+
+function isTrue(actual) {
+    isTrue(actual, null);
+}
+
+function isTrue(actual, message) {
+    Assert.isTrue(actual, message);
+}
+
+function isNull(actual) {
+    isNull(actual, null);
+}
+
+function isNull(actual, message) {
+    Assert.isNull(actual, message);
+}
+
+function notNull(actual) {
+    notNull(actual, null);
+}
+
+function notNull(actual, message) {
+    Assert.notNull(actual, message);
+}
