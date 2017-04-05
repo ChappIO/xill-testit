@@ -28,6 +28,7 @@ function generateReports(suites) {
     json->generate(report);
     markdown->generate(report);
     console->generate(report);
+    return report;
 }
 
 private function sortSuites(suites) {

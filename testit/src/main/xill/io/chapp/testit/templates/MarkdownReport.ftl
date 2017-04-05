@@ -20,9 +20,9 @@ ${executionDate?datetime?string.medium}
 
 ## Summary
 
-Executed Tests:     ${executedTestCount}
-Successful Tests:   ${successfulTestCount}
-Failed Tests:       ${failedTestCount}
+    Executed Tests:     ${executedTestCount}
+    Successful Tests:   ${successfulTestCount}
+    Failed Tests:       ${failedTestCount}
 
 ### Failed Tests
 

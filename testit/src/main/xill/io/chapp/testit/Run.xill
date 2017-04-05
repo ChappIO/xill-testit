@@ -24,7 +24,7 @@ function runAllSuites(suites) {
     do {
         generateRobots(suites);
         runSuites(suites);
-        generateReports(suites);
+        return generateReports(suites);
     } fail(e) {
         System.print("Error in '" :: e.robot :: ":" :: e.line :: ":\n" :: e.message, "error");
     } finally {
@@ -40,14 +40,14 @@ private function generateRobots(suites) {
         suite.suiteRobotPath = testDirectory :: "/" :: suite.robotPath;
         callbot(suite.robotPath, suite);
         Template.process(
-            "it/test/templates/Suite.ftl", 
+            "io/chapp/testit/templates/Suite.ftl",
             File.openWrite( suite.suiteRobotPath), 
             {"suite": suite}
         );
     }
     System.print("Generating Test Suite Index");
     Template.process(
-        "it/test/templates/RunAllSuites.ftl", 
+        "io/chapp/testit/templates/RunAllSuites.ftl",
         File.openWrite(runAllSuitesRobotPath), 
         {
             "suites": suites

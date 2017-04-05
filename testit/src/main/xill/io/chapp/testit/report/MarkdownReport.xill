@@ -19,7 +19,7 @@ var reportPath = Properties.get("io.chapp.testit.report.text.file");
 
 function generate(report) {
     Template.process(
-        "it/test/templates/MarkdownReport.ftl", 
+        "io/chapp/testit/templates/MarkdownReport.ftl",
         File.openWrite(reportPath),
         report
     );

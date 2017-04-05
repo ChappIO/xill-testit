@@ -13,11 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+use Collection;
 include io.chapp.testit.SuitesManager;
 include io.chapp.testit.Run;
 include io.chapp.testit.tools.Asserts;
 
 
 function runAllSuites() {
-    return runAllSuites(getSuites());
+    var result = runAllSuites(getSuites());
+    if(Collection.length(result.suites.failed)) {
+        error("There are test failures!");
+    }
 }
