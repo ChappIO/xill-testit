@@ -23,7 +23,7 @@
 
     <groupId>io.chapp</groupId>
     <artifactId>xill-testit</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
     <inceptionYear>2017</inceptionYear>
 
@@ -92,5 +92,14 @@
                 <artifactId>license-maven-plugin</artifactId>
             </plugin>
         </plugins>
-    </build>
+</build>
+
+<distributionManagement>
+	<repository>
+		<id>bintray-chappio-maven</id>
+		<name>chappio-maven</name>
+		<url>https://api.bintray.com/maven/chappio/maven/xill-testit/;publish=1</url>
+	</repository>
+</distributionManagement>
+
 </project>
