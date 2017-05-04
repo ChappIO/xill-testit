@@ -1,5 +1,5 @@
 /**
- * Copyright © 2017 Thomas Biesaart (thomas.biesaart@gmail.com)
+ * Copyright © 2017 Xillio (support@xillio.nl)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 use System, Template, Properties, File, String;
-include io.chapp.testit.report.Report;
+include lib.testit.report.Report;
 
-var testDirectory = Properties.get("io.chapp.testit.directory");
-var runAllSuitesRobotPath = Properties.get("io.chapp.testit.suiteRobot");
-var cleanUp = Properties.get("io.chapp.testit.cleanup");
+var testDirectory = Properties.get("lib.testit.directory");
+var runAllSuitesRobotPath = Properties.get("lib.testit.suiteRobot");
+var cleanUp = Properties.get("lib.testit.cleanup");
     
 function runAllSuites(suites) {
     do {
@@ -40,14 +40,14 @@ private function generateRobots(suites) {
         suite.suiteRobotPath = testDirectory :: "/" :: suite.robotPath;
         callbot(suite.robotPath, suite);
         Template.process(
-            "io/chapp/testit/templates/Suite.ftl",
+            "lib/testit/templates/Suite.ftl",
             File.openWrite( suite.suiteRobotPath), 
             {"suite": suite}
         );
     }
     System.print("Generating Test Suite Index");
     Template.process(
-        "io/chapp/testit/templates/RunAllSuites.ftl",
+        "lib/testit/templates/RunAllSuites.ftl",
         File.openWrite(runAllSuitesRobotPath), 
         {
             "suites": suites

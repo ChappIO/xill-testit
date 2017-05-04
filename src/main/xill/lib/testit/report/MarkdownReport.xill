@@ -1,5 +1,5 @@
 /**
- * Copyright © 2017 Thomas Biesaart (thomas.biesaart@gmail.com)
+ * Copyright © 2017 Xillio (support@xillio.nl)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,16 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-use System;
+use System, Collection, Template, File, Properties;
+
+var reportPath = Properties.get("lib.testit.report.text.file");
 
 function generate(report) {
-    var ok = report.suites.failed == [];
-    
-    if(ok) {
-        System.print("=== TESTS SUCCESSFUL ===");
-        System.print("== Completed " :: report.executedTestCount :: " Tests ==");
-    } else {
-        
-    }
-    report;
+    Template.process(
+        "lib/testit/templates/MarkdownReport.ftl",
+        File.openWrite(reportPath),
+        report
+    );
 }
+

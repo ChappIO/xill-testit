@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright © 2017 Thomas Biesaart (thomas.biesaart@gmail.com)
+    Copyright © 2017 Xillio (support@xillio.nl)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -21,85 +21,64 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.chapp</groupId>
-    <artifactId>xill-testit</artifactId>
+    <groupId>nl.xillio.libs</groupId>
+    <artifactId>testit</artifactId>
     <version>1.0.0</version>
-    <packaging>pom</packaging>
+    <packaging>xlib</packaging>
     <inceptionYear>2017</inceptionYear>
 
-    <organization>
-        <name>Thomas Biesaart</name>
-        <url>https://www.chapp.io</url>
-    </organization>
-
-    <properties>
-        <project.organization.email>thomas.biesaart@gmail.com</project.organization.email>
-    </properties>
-
-    <modules>
-        <module>testit</module>
-    </modules>
-
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>nl.xillio.xill</groupId>
-                    <artifactId>xill-maven-plugin</artifactId>
-                    <version>3.6.0-SNAPSHOT</version>
-                    <extensions>true</extensions>
-                </plugin>
-                <plugin>
-                    <groupId>com.mycila</groupId>
-                    <artifactId>license-maven-plugin</artifactId>
-                    <version>3.0</version>
-                    <configuration>
-                        <header>com/mycila/maven/plugin/license/templates/APACHE-2.txt</header>
-                        <properties>
-                            <owner>${project.organization.name}</owner>
-                            <email>${project.organization.email}</email>
-                        </properties>
-                        <excludes>
-                            <exclude>**/README</exclude>
-                        </excludes>
-                        <strict>true</strict>
-                        <mapping>
-                            <fxml>XML_STYLE</fxml>
-                            <xill>JAVADOC_STYLE</xill>
-                            <Jenkinsfile>JAVADOC_STYLE</Jenkinsfile>
-                        </mapping>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>check</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>add-license-headers</id>
-                            <goals>
-                                <goal>format</goal>
-                            </goals>
-                            <phase>clean</phase>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
         <plugins>
+            <plugin>
+                <groupId>nl.xillio.xill</groupId>
+                <artifactId>xill-maven-plugin</artifactId>
+                <version>3.6.0-SNAPSHOT</version>
+                <extensions>true</extensions>
+            </plugin>
             <plugin>
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
+                <version>3.0</version>
+                <configuration>
+                    <header>com/mycila/maven/plugin/license/templates/APACHE-2.txt</header>
+                    <properties>
+                        <owner>Xillio</owner>
+                        <email>support@xillio.nl</email>
+                    </properties>
+                    <excludes>
+                        <exclude>**/README</exclude>
+                    </excludes>
+                    <strict>true</strict>
+                    <mapping>
+                        <fxml>XML_STYLE</fxml>
+                        <xill>JAVADOC_STYLE</xill>
+                        <Jenkinsfile>JAVADOC_STYLE</Jenkinsfile>
+                    </mapping>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>add-license-headers</id>
+                        <goals>
+                            <goal>format</goal>
+                        </goals>
+                        <phase>clean</phase>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
-</build>
+    </build>
 
-<distributionManagement>
-	<repository>
-		<id>bintray-chappio-maven</id>
-		<name>chappio-maven</name>
-		<url>https://api.bintray.com/maven/chappio/maven/xill-testit/;publish=1</url>
-	</repository>
-</distributionManagement>
 
+    <distributionManagement>
+        <repository>
+            <id>xillio-xill-releases</id>
+            <name>Xillio Libraries</name>
+            <url>https://maven.xillio.com/artifactory/libs-release-xill</url>
+        </repository>
+    </distributionManagement>
 </project>

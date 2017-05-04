@@ -1,5 +1,5 @@
 /**
- * Copyright © 2017 Thomas Biesaart (thomas.biesaart@gmail.com)
+ * Copyright © 2017 Xillio (support@xillio.nl)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 use Collection;
-include io.chapp.testit.SuitesManager;
-include io.chapp.testit.Run;
-include io.chapp.testit.tools.Asserts;
+include lib.testit.SuitesManager;
+include lib.testit.Run;
+include lib.testit.tools.Asserts;
 
 
 function runAllSuites() {
