@@ -17,7 +17,7 @@
 -->
 use System, Date, String;
 include ${suite.robot} as testSuite;
-include io.chapp.testit.tools.Asserts;
+include lib.testit.tools.Asserts;
 
 argument suite;
 var case = null;
