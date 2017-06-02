@@ -15,9 +15,8 @@
     limitations under the License.
 
 -->
-use System, Date, String;
+use System, Date, String, Assert;
 include ${suite.robot} as testSuite;
-include lib.testit.tools.Asserts;
 
 argument suite;
 var case = null;
@@ -40,11 +39,11 @@ do {
         <#-- We require a specific error-->
         <#-- Here case.options.expectedError should not be rendered but concatenated on runtime instead to prevent escaping/injection issues --> 
         if(!String.matches(e.message, case.options.expectedError)) {
-            error("Expected an error message matching '" :: case.options.expectedError :: "' but found '" :: e.message :: "'");
+            Assert.error("Expected an error message matching '" :: case.options.expectedError :: "' but found '" :: e.message :: "'");
         }
         </#if>
     } success {
-        error("Expected an error but the case ran without errors");
+        Assert.error("Expected an error but the case ran without errors");
     }
     <#else>
     testSuite->${case.name};

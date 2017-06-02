@@ -25,14 +25,16 @@ ${executionDate?datetime?string.medium}
     Failed Tests:       ${failedTestCount}
 
 ### Failed Tests
-
 <#list suites.failed as suite>
-#### Suite: ${suite.robot}
 
+#### Suite: ${suite.robot}
 <#list suite.cases as case>
+
 ##### ${case.name}
 
-Line ${case.error.line}
+Robot: ${case.error.robot}
+Line: `${case.error.line}`
+
 ```
 ${case.error.message}
 ```
@@ -40,11 +42,11 @@ ${case.error.message}
 </#list>
 
 ### Successful Tests
-
 <#list suites.successful as suite>
+
 #### Suite: ${suite.robot}
 
 <#list suite.cases as case>
-- ${case.name}
+* ${case.name}
 </#list>
 </#list>

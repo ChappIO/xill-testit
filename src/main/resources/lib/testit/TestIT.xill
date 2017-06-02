@@ -13,15 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-use Collection;
+use Collection, Assert;
 include lib.testit.SuitesManager;
 include lib.testit.Run;
-include lib.testit.tools.Asserts;
 
 
 function runAllSuites() {
     var result = runAllSuites(getSuites());
     if(Collection.length(result.suites.failed)) {
-        error("There are test failures!");
+        Assert.error("There are test failures!");
     }
 }
